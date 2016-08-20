@@ -174,13 +174,3 @@ class Tieba(object):
         return {'success':success_d,'fail':fail_d}
 
 
-
-
-
-
-
-
-    def test(self):
-        print('succcss')
-
-
