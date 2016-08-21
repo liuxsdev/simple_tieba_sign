@@ -7,32 +7,8 @@ from os import path
 
 class Tieba(object):
     def __init__(self,BDUSS):
-        self.BDUSS=BDUSS
-
-    def sign_web(self,kw):
-        '''
-        网页签到：对某个贴吧进行签到，传入值为贴吧名
-        '''
-        sign_data={
-            'ie':'utf-8',
-            'kw':kw,
-            'tbs':'787255cdfbc754461471500262'
-        }
-        sign_url='http://tieba.baidu.com/sign/add'
-        sign_data=parse.urlencode(sign_data).encode('utf-8')
-        req=request.Request(sign_url)
-        req.add_header('Cookie','BDUSS='+self.BDUSS)
-        with request.urlopen(req,data=sign_data) as f:
-            data=f.read()
-            j=json.loads(data.decode('utf-8'))
-            if j['no']==0:
-                print('签到成功！')
-            elif j['no']==1101:
-                print('已经签到过了')
-            else:
-                print('签到失败！')
-            
-
+        self.BDUSS=BDUS
+        
     def tidyLikeData(self,data):
         '''整理抓取的我喜欢的贴吧页面'''
         likeData=[]
@@ -92,7 +68,7 @@ class Tieba(object):
         if fid==None:
             fid=self.getfid(kw)
         data={
-        'BDUSS':'zJxY2lmOHFmYVdOQzgxMDdYMHVKWnU1VnV5M0R2dUF5Y0k5a01OYWFFY0JEY2RYQVFBQUFBJCQAAAAAAAAAAAEAAABYZecY0uCyu7TtyqcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAn1cBgJ9XZ',
+        'BDUSS':self.BDUSS,
         'fid':fid,
         'kw':kw,
         'tbs':'12d4181f7a12804b1471269978'
