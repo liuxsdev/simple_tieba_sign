@@ -65,9 +65,6 @@ class Tieba(object):
 
 #获得喜欢的贴吧列表
     def getLike(self):
-        '''
-        ['江苏省黄桥中学', '兰州交通大学', '秋犯', '忘语'...]
-        '''
         like=[]
         url='http://tieba.baidu.com/f/like/mylike?&pn='
         d=self.fetch(url,self.BDUSS)
