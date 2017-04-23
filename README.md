@@ -1,6 +1,6 @@
 # simple_tieba_sign
 Python3 简易一键签到百度贴吧的脚本（模拟客户端）
 
-# Usage
+需要手动填入BDUSS
 
-```python sign.py```
+需要:requests、BeautifulSoup4
