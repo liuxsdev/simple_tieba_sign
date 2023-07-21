@@ -105,8 +105,9 @@ class Tieba:
             print("获取关注的贴吧信息")
             fav_len = len(fav_list)
             for index, fav_data in enumerate(fav_list):
-                sys.stdout.write(f" 收集数据: {int(index * 100 / fav_len)}\r")
-                sys.stdout.flush()
+                if index % 10 == 0:
+                    sys.stdout.write(f" 收集数据: {int(index * 100 / fav_len)}\r")
+                    sys.stdout.flush()
                 fav_data["fid"] = self.get_fid(fav_data["title"])
             return fav_list
         return None
