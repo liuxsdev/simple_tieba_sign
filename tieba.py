@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 import sys
 import time
 from multiprocessing.dummy import Pool as ThreadPool
@@ -142,17 +143,15 @@ class Tieba:
 
 
 if __name__ == "__main__":
-    # start_time = time.time()
-    bduss_path = Path.cwd().joinpath("BDUSS.txt")
-    if bduss_path.exists():
-        with open(bduss_path, "r", encoding="utf-8") as bduss_file:
-            bduss = bduss_file.read().strip()
-    else:
-        bduss = input("请输入贴吧BDUSS: ")
-        with open(bduss_path, "w", encoding="utf-8") as bduss_file:
-            bduss_file.write(bduss)
+    bduss = os.getenv("BDUSS")
+    if not bduss:
+        bduss_path = Path.cwd().joinpath("BDUSS.txt")
+        if bduss_path.exists():
+            with open(bduss_path, "r", encoding="utf-8") as bduss_file:
+                bduss = bduss_file.read().strip()
+        else:
+            bduss = input("请输入贴吧BDUSS: ")
+            with open(bduss_path, "w", encoding="utf-8") as bduss_file:
+                bduss_file.write(bduss)
     t = Tieba(bduss)
     t.sign()
-    # end_time = time.time()
-    # spend_time = end_time - start_time
-    # print(f"签到完成,总用时{spend_time:.2f}秒")

@@ -11,4 +11,4 @@ python tieba.py #填入 BDUSS,会保存在 BDUSS.txt 文件中,下次就不需�
 
 ## Github Action 运行签到
 
-新建名为`BDUSS`的`Repository secrets`，每天 9 点和 15 点运行签到，也可手动运行(github action 访问国内有点慢)
+新建名为`BDUSS`的`Repository secrets`，每天自动运行签到，也可手动运行(github action 访问国内有点慢)
