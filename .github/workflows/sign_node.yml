@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-python-script:
+  run-nodejs-script:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,10 +14,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 7
+          run_install: false
       - name: Install dependencies
-        run: |
-          curl -fsSL https://get.pnpm.io/install.sh | sh -
-          pnpm add @liuxsdev/tieba_sign -g
+        run: pnpm add @liuxsdev/tieba_sign -g
       - name: Run Scripts
         env:
           BDUSS: ${{ secrets.BDUSS }}
