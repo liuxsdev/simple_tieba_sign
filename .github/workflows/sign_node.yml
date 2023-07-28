@@ -10,12 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python
+      - name: Set up Nodejs
         uses: actions/setup-node@v3
         with:
           node-version: 18
       - name: Install dependencies
-        run: npm install @liuxsdev/tieba_sign -g
+        run: |
+          curl -fsSL https://get.pnpm.io/install.sh | sh -
+          pnpm add @liuxsdev/tieba_sign -g
       - name: Run Scripts
         env:
           BDUSS: ${{ secrets.BDUSS }}
